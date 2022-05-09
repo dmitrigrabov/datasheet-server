@@ -1,5 +1,6 @@
 import errors from '../lib/errors'
 import * as redis from 'redis'
+import 'regenerator-runtime/runtime'
 
 function partsFromFilename (fname) {
   const body = fname.slice(0, -5)
