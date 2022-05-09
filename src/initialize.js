@@ -1,4 +1,3 @@
-import StoreJson from './models/StoreJson'
 import fetchers from './lib/Fetcher'
 import Controller from './lib/Controller'
 import R from 'ramda'
@@ -15,19 +14,22 @@ try {
   config = require('./config.js').default
 }
 
-export default callback => {
+const initialize = (Store, callback) => {
   return Promise.resolve().then(() => {
     return Object.keys(config).map(fType => {
       // skip config attrs that don't have corresponding fetchers
-      if (!(fType in fetchers)) return null
+      if (!(fType in fetchers)) {
+        return null
+      }
+      
       const FFetcher = fetchers[fType]
+
       return config[fType].map(sheet => {
-        const otherArgs = { ...sheet }
-        delete otherArgs.name
-        delete otherArgs.tabs
+        const {name, tabs, ...otherArgs} = sheet
+
         return {
           name: sheet.name,
-          fetcher: new FFetcher(new StoreJson(), sheet.name, sheet.tabs, ...Object.values(otherArgs))
+          fetcher: new FFetcher(new Store(), name, tabs, ...Object.values(otherArgs))
         }
       })
     })
@@ -50,3 +52,5 @@ export default callback => {
       )
     })
 }
+
+export default initialize

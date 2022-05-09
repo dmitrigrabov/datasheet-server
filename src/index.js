@@ -5,6 +5,8 @@ import initialize from './initialize'
 import middleware from './middleware'
 import api from './api'
 import dotenv from 'dotenv'
+import RedisStoreJson from './models/RedisStoreJson'
+
 const hbs = require('express-handlebars')
 
 dotenv.config()
@@ -26,7 +28,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const config = process.env
 
-initialize(controller => {
+initialize(RedisStoreJson, controller => {
   app.use(
     middleware({
       config,
