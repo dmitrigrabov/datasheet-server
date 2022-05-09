@@ -6,6 +6,8 @@ import middleware from './middleware'
 import api from './api'
 import dotenv from 'dotenv'
 import RedisStoreJson from './models/RedisStoreJson'
+import cors from 'cors'
+import e from 'express'
 
 const hbs = require('express-handlebars')
 
@@ -23,9 +25,11 @@ console.log('env', process.env.NODE_ENV)
 
 // enable cross origin requests explicitly in development
 if (process.env.NODE_ENV === 'development') {
-  const cors = require('cors')
   console.log('Enabling CORS in development...')
   app.use(cors())
+} else {
+  console.log('Enabling CORS from ')
+  app.use(cors({origin: 'https://timemap.pages.dev'}))
 }
 
 const config = process.env
