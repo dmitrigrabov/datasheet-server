@@ -8,7 +8,7 @@
       <div class="bp-source">{{ source }}</div>
     </div>
     {{#each urls}}
-    <div><a target="_blank" href="https://data-helper-server.herokuapp.com{{ this }}">{{ this }}</a></div>
+    <div><a target="_blank" href="{{ this }}">{{ this }}</a></div>
     {{/each}}
   </div>
   {{ else }}
@@ -16,7 +16,7 @@
   {{/each}}
 </div>
 
-<a class="bp-update-container" target="_blank" href="https://data-helper-server.herokuapp.com/api/update">
+<a class="bp-update-container" target="_blank" href="/api/update">
   <div class="bp-button">Update</div>
 </div>
 
