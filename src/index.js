@@ -19,6 +19,8 @@ app.engine('.hbs', hbs({
 }))
 app.set('view engine', '.hbs')
 
+console.log('env', process.env.NODE_ENV)
+
 // enable cross origin requests explicitly in development
 if (process.env.NODE_ENV === 'development') {
   const cors = require('cors')
