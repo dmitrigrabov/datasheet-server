@@ -4,7 +4,7 @@ export default {
   gsheets: [
     {
       name: 'timemap_data',
-      id: '1YUms3R0ZbRcgNgn65NmH6vB3PkCsvG4kNoJeCJU0nYc',
+      id: '1Op90NUNpcLe2VTlapb6S_RIaUJqpVcqff38oHi5Uchs',
       tabs: timemap.default
     }
   ]
