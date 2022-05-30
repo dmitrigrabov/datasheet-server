@@ -10,7 +10,8 @@
     "lint": "standard \"src/**/*.js\" \"test/**/*.js\"",
     "test-watch": "ava --watch",
     "test": "ava --verbose",
-    "travis-encrypt": "./scripts/encrypt.sh"
+    "travis-encrypt": "./scripts/encrypt.sh",
+    "tunnel": "ngrok http --region=eu --hostname=data-helper-server.eu.ngrok.io 4040"
   },
   "repository": {
     "type": "git",

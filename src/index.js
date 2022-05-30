@@ -25,11 +25,23 @@ console.log('env', process.env.NODE_ENV)
 
 // enable cross origin requests explicitly in development
 if (process.env.NODE_ENV === 'development') {
-  console.log('Enabling CORS in development...')
   app.use(cors())
 } else {
-  console.log('Enabling CORS from ')
-  app.use(cors({origin: 'https://timemap.pages.dev'}))
+  const allowlist = ['https://timemap.pages.dev', 'https://timemap.eu.ngrok.io']
+
+  const corsOptionsDelegate = function (req, callback) {
+    let corsOptions;
+    
+    if (allowlist.indexOf(req.header('Origin')) !== -1) {
+      corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    } else {
+      corsOptions = { origin: false } // disable CORS for this request
+    }
+    
+    callback(null, corsOptions) // callback expects two parameters: error and options
+  }
+
+  app.use(cors(corsOptionsDelegate))
 }
 
 const config = process.env
