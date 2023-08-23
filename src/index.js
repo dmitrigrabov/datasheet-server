@@ -27,7 +27,7 @@ console.log('env', process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
   app.use(cors())
 } else {
-  const allowlist = ['https://timemap.pages.dev', 'https://timemap.eu.ngrok.io']
+  const allowlist = ['https://timemap.pages.dev', 'https://timemap.eu.ngrok.io', 'https://russian-atrocity-map.iphronline.org']
 
   const corsOptionsDelegate = function (req, callback) {
     let corsOptions;
